@@ -57,6 +57,14 @@ export const Logic = () => {
     }
   }
 
+  const dependentValue = (exchObj, koef, value, currentCurrencyType, oppositeCurrencyType) => {
+    if (currentCurrencyType === exchObj.ccy && oppositeCurrencyType === exchObj.base_ccy) {
+      return +(value / koef).toFixed(2);
+    } else {
+      return +(value * koef).toFixed(2);
+    }
+  }
+
   // console.log(`active input ${activeInput}`)
   useEffect(() => {
 
@@ -64,7 +72,7 @@ export const Logic = () => {
       case 1: 
         const koef1 = findKoefic(exchangeObj, currencyFirstIn)
         dispatch(setValueSecondtIn(
-          +(valueFirstIn / koef1).toFixed(2)
+          dependentValue(exchangeObj, koef1, valueFirstIn, currencySecondIn, currencyFirstIn)
           ))
         // console.log(`1-st formula, equal ${+(valueFirstIn * findKoefic(exchangeObj, currencyFirstIn)).toFixed(2)}`)
         // console.log(`1-st formula, 2-nd value ${valueSecondIn}`)  
@@ -72,7 +80,7 @@ export const Logic = () => {
       case 2: 
         const koef2 = findKoefic(exchangeObj, currencySecondIn)
         dispatch(setValueFirstIn(
-          +(valueSecondIn * koef2).toFixed(2)
+          dependentValue(exchangeObj, koef2, valueSecondIn, currencyFirstIn, currencySecondIn)
           ))
           // console.log(`2-st formula, equal ${+(valueSecondIn / findKoefic(exchangeObj, currencySecondIn)).toFixed(2)}`)
           // console.log(`2-st formula, 1-st value ${valueFirstIn}`)
