@@ -16,7 +16,7 @@ import {
 export const Logic = () => {
 
   const activeInput = useSelector(getChangeFromInput);
-  const currencies = useSelector(getCurrencies);
+  const Currencies = useSelector(getCurrencies);
   const valueFirstIn = useSelector(getValueFirstIn);
   const currencyFirstIn = useSelector(getCurrencyFirstIn);
   const valueSecondIn = useSelector(getValueSecondIn);
@@ -24,6 +24,22 @@ export const Logic = () => {
 
 
   const dispatch = useDispatch();
+
+  const currenciesWithImplisitlyExchangeObj = (currencies) => {
+    const adittionalExchArray = [];
+    currencies.forEach((e, i, arr) => {
+      const isExist = arr.some(el => el.base_ccy === e.ccy && el.ccy === arr[i+1].ccy);
+      !isExist && i < arr.length - 1 && adittionalExchArray.push({
+        ccy: e.ccy,
+        base_ccy: arr[i+1].ccy,
+        buy: (e.buy / arr[i+1].buy).toFixed(4),
+        sale: (e.sale / arr[i+1].sale).toFixed(4),
+      })
+    })
+    return currencies.concat(adittionalExchArray);
+  }
+
+  const preparedCurrencies = currenciesWithImplisitlyExchangeObj(Currencies);
 
 
   const findExchaneObj = (currencies, currFirst, currSecond) => {
@@ -41,11 +57,8 @@ export const Logic = () => {
       return isFindInInitialOrder || isFindInReverseOrder
     })
   }
-
     
-  const exchangeObj = findExchaneObj(currencies, currencyFirstIn, currencySecondIn);
-  // console.log(`Logic.comp`)
-  // console.log(exchangeObj)
+  const exchangeObj = findExchaneObj(preparedCurrencies, currencyFirstIn, currencySecondIn);
 
   const findKoefic = (exchObj, initialCcy) => {
     if (initialCcy === exchObj.ccy) {
@@ -65,7 +78,6 @@ export const Logic = () => {
     }
   }
 
-  // console.log(`active input ${activeInput}`)
   useEffect(() => {
 
     switch(activeInput) {
@@ -74,29 +86,15 @@ export const Logic = () => {
         dispatch(setValueSecondtIn(
           dependentValue(exchangeObj, koef1, valueFirstIn, currencySecondIn, currencyFirstIn)
           ))
-        // console.log(`1-st formula, equal ${+(valueFirstIn * findKoefic(exchangeObj, currencyFirstIn)).toFixed(2)}`)
-        // console.log(`1-st formula, 2-nd value ${valueSecondIn}`)  
         break
       case 2: 
         const koef2 = findKoefic(exchangeObj, currencySecondIn)
         dispatch(setValueFirstIn(
           dependentValue(exchangeObj, koef2, valueSecondIn, currencyFirstIn, currencySecondIn)
           ))
-          // console.log(`2-st formula, equal ${+(valueSecondIn / findKoefic(exchangeObj, currencySecondIn)).toFixed(2)}`)
-          // console.log(`2-st formula, 1-st value ${valueFirstIn}`)
         break
   
       default: dispatch(valueFirstIn(1))
     }
   },[activeInput, currencyFirstIn, currencySecondIn, valueFirstIn, valueSecondIn])
-  
-
-    // console.log(activeInput)
-  // console.log(currencies)
-  // console.log(valueFirstIn)
-  // console.log(currencyFirstIn)
-  // console.log(valueSecondIn)
-  // console.log(currencySecondIn)
-  // console.log(isLoading)
-
 }
