@@ -1,0 +1,47 @@
+@import '../../Utils/Variables.scss';
+
+.bar {
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__input{
+    background-color: $backgroundLight;
+    color: $backgroundDarker;
+    height: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    padding-left: 10px;
+    max-width: 200px;
+    border: none;
+    border-radius: 10px 0 0 10px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__select {
+    background-color: $backgroundLight;
+    color: $backgroundDark;
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    border: none;
+    border-radius: 0 10px 10px 0; 
+    -webkit-appearance: none;
+    background-repeat: no-repeat;
+    background-size: 30px;
+    background-position-x: 58px;
+    background-position-y: 8px;
+
+    &:focus {
+      outline: none;
+    }
+
+  }
+}

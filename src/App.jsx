@@ -22,8 +22,8 @@ function App() {
       dispatch(setIsLoading(false));
       dispatch(uploadCurrencies(currencies))
     } catch (error) {
-      alert(error)
-    }
+      alert(`Somesing wrong ${error}`);
+    } 
   }
   
   useEffect(() => {
@@ -38,8 +38,8 @@ function App() {
       ? <Oval
         className="loader"
         ariaLabel="loading-indicator"
-        height={48}
-        width={48}
+        height={60}
+        width={60}
         strokeWidth={3}
         // strokeWidthSecondary={1}
         color="white"
@@ -47,10 +47,11 @@ function App() {
       />
       : <Header />
     }
-      
-      <CurrencyInput inpNumb={1}/>
-      <Hint />
-      <CurrencyInput inpNumb={2}/>
+      <div className="page__inputs">
+        <CurrencyInput inpNumb={1}/>
+        <Hint />
+        <CurrencyInput inpNumb={2}/>
+      </div>
       <ExchangeType />
     </div>
     </>

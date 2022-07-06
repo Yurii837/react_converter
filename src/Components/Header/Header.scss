@@ -1,0 +1,22 @@
+@import '../../Utils/Variables.scss';
+
+.header {
+  background-color: $backgroundLight;
+  display: flex;
+  width: 100%;
+  padding: 20px 0;
+  justify-content: space-around;
+
+  &__title {
+    color: $background;
+  }
+
+  &__currency {
+    color: $backgroundLighter;
+  }
+
+  &__rate {
+    color: $backgroundDarker;
+    font-size: 18px;
+  }
+}

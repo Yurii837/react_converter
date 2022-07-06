@@ -1,5 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux/es/exports";
+import './CurrencyInput.scss';
+import arrow from '../../Images/Arrow-Down-Transparent-Images-PNG.png'
 
 import { 
   getCurrencies,
@@ -65,12 +67,15 @@ export const CurrencyInput = ({inpNumb}) => {
     : 'UAH'
 
   return (
-    <div className="form">
+    <div className="bar">
       <input 
+        className="bar__input"
         type="text" 
         value={value()}
         onChange={(e) => setValue(e.target.value)}/>
       <select 
+        style={{ backgroundImage: `url(${arrow})` }}
+        className="bar__select"
         value={currency()} 
         onChange={(e) => {setCurrency(e.target.value)}}
       >

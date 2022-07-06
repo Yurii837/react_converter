@@ -1,1 +1,29 @@
 
+@import './Utils/Reset.scss';
+@import './Utils/Variables.scss';
+
+*{
+  box-sizing: border-box;
+};
+
+html {
+  font-family: 'Nunito', sans-serif;
+}
+
+
+.page {
+  background-color: $background;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: center;
+  height: 100vh;
+
+  &__inputs {
+    display: flex;
+    // justify-content: center;
+    align-items: center;
+  }
+}
+
+
