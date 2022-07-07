@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux/es/exports";
 import './CurrencyInput.scss';
-import arrow from '../../Images/Arrow-Down-Transparent-Images-PNG.png'
+import arrow from '../../Images/Arrow-Down-Transparent-Images-PNG.png';
 
 import { 
   getCurrencies,
@@ -19,7 +19,7 @@ import {
 
 export const CurrencyInput = ({inpNumb}) => {
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const currencies = useSelector(getCurrencies);
   const valueFirstIn = useSelector(getValueFirstIn);
@@ -32,8 +32,8 @@ export const CurrencyInput = ({inpNumb}) => {
       return valueFirstIn
     } else {
       return valueSecondIn
-    }
-  }
+    };
+  };
 
   const setValue = (value) => {
     dispatch(setChangeFromInpu(inpNumb))
@@ -41,16 +41,16 @@ export const CurrencyInput = ({inpNumb}) => {
       return dispatch(setValueFirstIn(value))
     } else {
       return dispatch(setValueSecondtIn(value))
-    } 
-  }
+    };
+  };
 
   const currency = () => {
     if (inpNumb === 1) {
       return currencyFirstIn
     } else {
       return currencySecondIn
-    }
-  }
+    };
+  };
 
   const setCurrency = (currType) => {
     dispatch(setChangeFromInpu(inpNumb))
@@ -58,17 +58,17 @@ export const CurrencyInput = ({inpNumb}) => {
       return dispatch(setCurrencyFirstIn(currType))
     } else {
       return dispatch(setCurrencySecondIn(currType))
-    } 
-  }
+    };
+  };
 
   const baseCcy = currencies.length > 0 
     ? currencies[1].base_ccy
-    : 'UAH'
+    : 'UAH';
 
   const setCorrectValue = (s) => {
       const rgx = /^[0-9]*\.?[0-9]*$/;
-      s.match(rgx) && setValue(s.match(rgx)[0])
-  }
+      s.match(rgx) && setValue(s.match(rgx)[0]);
+  };
 
   return (
     <div className="bar">
@@ -76,9 +76,10 @@ export const CurrencyInput = ({inpNumb}) => {
         className="bar__input"
         type="text" 
         value={value()}
-        onChange={(e) => setCorrectValue(e.target.value)}/>
+        onChange={(e) => setCorrectValue(e.target.value)}
+      />
       <select 
-        style={{ backgroundImage: `url(${arrow})` }}
+        style={{backgroundImage: `url(${arrow})`}}
         className="bar__select"
         value={currency()} 
         onChange={(e) => {setCurrency(e.target.value)}}
@@ -88,7 +89,6 @@ export const CurrencyInput = ({inpNumb}) => {
           return <option key={currency.buy} value={currency.ccy}>{currency.ccy}</option>
         })}
       </select>
-
     </div>
-  )
-}
+  );
+};

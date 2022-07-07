@@ -48,7 +48,7 @@ const reducer = (state = defaultState, action) => {
       return { ...state, exchangeType: action.payload };
 
     default: return state;
-  }
+  };
 };
 
 // Selectors
@@ -60,7 +60,6 @@ export const getValueSecondIn = (state) => state.valueSecondIn;
 export const getCurrencySecondIn = (state) => state.currencySecondIn;
 export const getIsLoading = (state) => state.isLoading;
 export const getExchangeType = (state) => state.exchangeType;
-
 
 // Creators
 export const setChangeFromInpu = (activeInput) => ({ type: CHANGE_FROM_INPUT, payload: activeInput });

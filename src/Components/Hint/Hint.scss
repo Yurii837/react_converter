@@ -11,7 +11,7 @@ $duration: 0.5s;
     color: $backgroundDark;
     font-size: 26px;
   }
-}
+};
 
 .left-bar {
   position: absolute;
@@ -27,7 +27,7 @@ $duration: 0.5s;
     transition: all $duration $easing;
     z-index: -1;
   }
-}
+};
 
 .right-bar {
   position: absolute;
@@ -43,13 +43,13 @@ $duration: 0.5s;
     transition: all $duration $easing;
     z-index: -1;
   }
-}
+};
 
 .open {
-  .left-bar:after {
-  transform: rotate(-53deg) translateX(3px) translateY(0px);
-}
-.right-bar:after {
-  transform: rotate(53deg) translateX(20px) translateY(13px);
-}
-}
+    .left-bar:after {
+    transform: rotate(-53deg) translateX(3px) translateY(0px);
+  }
+  .right-bar:after {
+    transform: rotate(53deg) translateX(20px) translateY(13px);
+  }
+};

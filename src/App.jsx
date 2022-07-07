@@ -14,14 +14,14 @@ import { uploadCurrencies, setIsLoading, getIsLoading, getExchangeType } from ".
 function App() {
 
   const dispatch = useDispatch();
-  const isLoading = useSelector(getIsLoading)
-  const exchangeType = useSelector(getExchangeType)
+  const isLoading = useSelector(getIsLoading);
+  const exchangeType = useSelector(getExchangeType);
 
   const GetCurrencies = async() => {
     try {
       const currencies = await GetEndpoint(exchangeType);
       dispatch(setIsLoading(false));
-      dispatch(uploadCurrencies(currencies))
+      dispatch(uploadCurrencies(currencies));
     } catch (error) {
       alert(`Somesing wrong ${error}`);
     } 
@@ -29,35 +29,34 @@ function App() {
   
   useEffect(() => {
   dispatch(setIsLoading(true));
-  GetCurrencies()
+  GetCurrencies();
   }, [exchangeType]);
 
   return (
     <>
-    {!isLoading && <Logic />}
-    <div className='page'>
-    {isLoading 
-      ? <Oval
-        className="loader"
-        ariaLabel="loading-indicator"
-        height={60}
-        width={60}
-        strokeWidth={3}
-        color="white"
-        secondaryColor='blue'
-      />
-      : <Header />
-    }
-      <div className="page__inputs">
-        <CurrencyInput inpNumb={1}/>
-        <Hint />
-        <CurrencyInput inpNumb={2}/>
+      {!isLoading && <Logic />}
+      <div className='page'>
+      {isLoading 
+        ? <Oval
+          className="loader"
+          ariaLabel="loading-indicator"
+          height={60}
+          width={60}
+          strokeWidth={3}
+          color="white"
+          secondaryColor='blue'
+        />
+        : <Header />
+      }
+        <div className="page__inputs">
+          <CurrencyInput inpNumb={1}/>
+          <Hint />
+          <CurrencyInput inpNumb={2}/>
+        </div>
+        <ExchangeType />
       </div>
-      <ExchangeType />
-    </div>
-    </>
-    
+    </>  
   );
-}
+};
 
 export default App;

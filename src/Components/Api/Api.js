@@ -1,4 +1,4 @@
-const privatbankApi = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid='
+const privatbankApi = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=';
 
 export const GetEndpoint = async (type = 'cash') => {
 

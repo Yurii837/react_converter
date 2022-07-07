@@ -5,7 +5,7 @@ import './Header.scss';
 
 export const Header = () => {
 
-  const currencies = useSelector(getCurrencies)
+  const currencies = useSelector(getCurrencies);
 
   return (
     <div className="header">
@@ -19,5 +19,5 @@ export const Header = () => {
       )
     })}
     </div>
-  )
-}
+  );
+};

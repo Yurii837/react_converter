@@ -1,9 +1,9 @@
 # Currency Converter by Yurii Horohotskyi
 
-DEMO LINK: 
+DEMO LINK: ('https://yurii837.github.io/react_converter/')
 
 - framework: React;
-- npm modules: es-lint, gh-pages, sass, redux, classnames, react-loader;
+- npm modules: gh-pages, sass, redux, classnames, react-loader;
 - features: 
     - load actual rates from PrivatBank Api;
     - applying cash and cashless rates;
