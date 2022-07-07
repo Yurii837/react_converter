@@ -27,14 +27,29 @@ export const Logic = () => {
 
   const currenciesWithImplisitlyExchangeObj = (currencies) => {
     const adittionalExchArray = [];
+     const baseCcy = currencies[0].base_ccy;
     currencies.forEach((e, i, arr) => {
+      const findMissObj = el => baseCcy === el.base_ccy && e.base_ccy === el.ccy;
       const isExist = arr.some(el => el.base_ccy === e.ccy && el.ccy === arr[i+1].ccy);
+      const isBaseWidthCurrent = baseCcy === e.base_ccy;
+      !isBaseWidthCurrent && adittionalExchArray.push({
+        ccy: e.ccy,
+        base_ccy: baseCcy,
+        buy: (e.buy * arr.find(findMissObj).buy).toFixed(6),
+        sale: (e.sale * arr.find(findMissObj).sale).toFixed(6),
+      });   
+      !isExist && i < arr.length - 2 && adittionalExchArray.push({
+        ccy: e.ccy,
+        base_ccy: arr[i+2].ccy,
+        buy: (e.buy / arr[i+2].buy).toFixed(6),
+        sale: (e.sale / arr[i+2].sale).toFixed(6),
+      });
       !isExist && i < arr.length - 1 && adittionalExchArray.push({
         ccy: e.ccy,
         base_ccy: arr[i+1].ccy,
-        buy: (e.buy / arr[i+1].buy).toFixed(4),
-        sale: (e.sale / arr[i+1].sale).toFixed(4),
-      })
+        buy: (e.buy / arr[i+1].buy).toFixed(6),
+        sale: (e.sale / arr[i+1].sale).toFixed(6),
+      });
     })
     return currencies.concat(adittionalExchArray);
   }

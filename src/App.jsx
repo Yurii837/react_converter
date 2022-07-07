@@ -41,7 +41,6 @@ function App() {
         height={60}
         width={60}
         strokeWidth={3}
-        // strokeWidthSecondary={1}
         color="white"
         secondaryColor='blue'
       />
