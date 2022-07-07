@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/react_converter/static/css/main.4f47ee42.css",
+    "main.js": "/react_converter/static/js/main.ffc8d2c0.js",
+    "static/media/Arrow-Down-Transparent-Images-PNG.png": "/react_converter/static/media/Arrow-Down-Transparent-Images-PNG.b46834d9a33ce6fef4e1.png",
+    "index.html": "/react_converter/index.html",
+    "main.4f47ee42.css.map": "/react_converter/static/css/main.4f47ee42.css.map",
+    "main.ffc8d2c0.js.map": "/react_converter/static/js/main.ffc8d2c0.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4f47ee42.css",
+    "static/js/main.ffc8d2c0.js"
+  ]
+}
