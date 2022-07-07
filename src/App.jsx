@@ -8,17 +8,18 @@ import { CurrencyInput } from './Components/CurrencyInput/CurrencyInput';
 import { Hint } from './Components/Hint/Hint';
 import { ExchangeType } from './Components/ExchangeType/ExchangeType';
 import { Logic } from './Components/Logic/Logic';
-import { uploadCurrencies, setIsLoading, getIsLoading } from "./Components/ReduxStore/Store";
+import { uploadCurrencies, setIsLoading, getIsLoading, getExchangeType } from "./Components/ReduxStore/Store";
 
 
 function App() {
 
   const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoading)
+  const exchangeType = useSelector(getExchangeType)
 
   const GetCurrencies = async() => {
     try {
-      const currencies = await GetEndpoint();
+      const currencies = await GetEndpoint(exchangeType);
       dispatch(setIsLoading(false));
       dispatch(uploadCurrencies(currencies))
     } catch (error) {
@@ -27,8 +28,9 @@ function App() {
   }
   
   useEffect(() => {
+  dispatch(setIsLoading(true));
   GetCurrencies()
-  }, []);
+  }, [exchangeType]);
 
   return (
     <>

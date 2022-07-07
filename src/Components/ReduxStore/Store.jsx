@@ -9,7 +9,7 @@ const defaultState = {
   valueSecondIn: 1,
   currencySecondIn: 'UAH',
   isLoading: true,
-
+  exchangeType: 'cash',
 };
 
 const CHANGE_FROM_INPUT = 'CHANGE_FROM_INPUT';
@@ -19,6 +19,7 @@ const SET_CURRENCY_FIRST_INPUT = 'SET_CURRENCY_FIRST_INPUT';
 const SET_VALUE_SECOND_INPUT = 'SET_VALUE_SECOND_INPUT';
 const SET_CURRENCY_SECOND_INPUT = 'SET_CURRENCY_SECOND_INPUT';
 const SET_IS_LOADING = 'SET_IS_LOADING';
+const SET_EXCHANGE_TYPE = 'SET_EXCHANGE_TYPE';
 
 const reducer = (state = defaultState, action) => {
   switch (action.type) {
@@ -42,7 +43,9 @@ const reducer = (state = defaultState, action) => {
 
     case SET_IS_LOADING:
       return { ...state, isLoading: action.payload };
-  
+
+    case SET_EXCHANGE_TYPE:
+      return { ...state, exchangeType: action.payload };
 
     default: return state;
   }
@@ -56,6 +59,7 @@ export const getCurrencyFirstIn = (state) => state.currencyFirstIn;
 export const getValueSecondIn = (state) => state.valueSecondIn;
 export const getCurrencySecondIn = (state) => state.currencySecondIn;
 export const getIsLoading = (state) => state.isLoading;
+export const getExchangeType = (state) => state.exchangeType;
 
 
 // Creators
@@ -66,7 +70,6 @@ export const setCurrencyFirstIn = (currency) => ({ type: SET_CURRENCY_FIRST_INPU
 export const setValueSecondtIn = (amount) => ({ type: SET_VALUE_SECOND_INPUT, payload: amount});
 export const setCurrencySecondIn = (currency) => ({ type: SET_CURRENCY_SECOND_INPUT, payload: currency});
 export const setIsLoading = (boolean) => ({ type: SET_IS_LOADING, payload: boolean});
-
-
+export const setExchangeType = (type) => ({ type: SET_EXCHANGE_TYPE, payload: type});
 
 export const store = createStore(reducer, composeWithDevTools());

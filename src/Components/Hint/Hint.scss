@@ -1,6 +1,6 @@
 @import '../../Utils/Variables.scss';
 
-$easing: cubic-bezier(.25,1,.55,.8);
+$easing: cubic-bezier(.25,1.7,.35,.8);
 $duration: 0.5s;
 
 .hint {
@@ -23,7 +23,6 @@ $duration: 0.5s;
     height: 10px;
     display: block;
     transform: rotate(-130deg) translateX(-117px) translateY(141px);
-    // float: right;
     border-radius: 10px;
     transition: all $duration $easing;
     z-index: -1;
@@ -40,7 +39,6 @@ $duration: 0.5s;
     height: 10px;
     display: block;
     transform: rotate(130deg) translateX(-99px) translateY(-156px);
-    // float: right;
     border-radius: 10px;
     transition: all $duration $easing;
     z-index: -1;
