@@ -26,7 +26,6 @@ export const CurrencyInput = ({inpNumb}) => {
   const currencyFirstIn = useSelector(getCurrencyFirstIn);
   const valueSecondIn = useSelector(getValueSecondIn);
   const currencySecondIn = useSelector(getCurrencySecondIn);
-  // console.log(`Input.comp ${currencies}`);
 
   const value = () => {
     if (inpNumb === 1) {
@@ -66,13 +65,18 @@ export const CurrencyInput = ({inpNumb}) => {
     ? currencies[1].base_ccy
     : 'UAH'
 
+  const setCorrectValue = (s) => {
+      const rgx = /^[0-9]*\.?[0-9]*$/;
+      s.match(rgx) && setValue(s.match(rgx)[0])
+  }
+
   return (
     <div className="bar">
       <input 
         className="bar__input"
         type="text" 
         value={value()}
-        onChange={(e) => setValue(e.target.value)}/>
+        onChange={(e) => setCorrectValue(e.target.value)}/>
       <select 
         style={{ backgroundImage: `url(${arrow})` }}
         className="bar__select"
